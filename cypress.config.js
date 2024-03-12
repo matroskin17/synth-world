@@ -1,9 +1,17 @@
 const { defineConfig } = require("cypress");
+const defaultConfig = require('./cypress/support/helpmates/defaultConfig')
+
+
 
 module.exports = defineConfig({
+  watchForFileChanges: false,
+  ...defaultConfig.macbook,
+  ...defaultConfig.timeouts,
   e2e: {
+    specPattern: 'cypress/e2e/**/*.spec.{js,jsx,ts,tsx}',
+    ...defaultConfig.stageUrl,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      console.log('Config')
     },
   },
 });
